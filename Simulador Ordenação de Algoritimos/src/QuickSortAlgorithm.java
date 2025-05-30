@@ -13,12 +13,15 @@ public class QuickSortAlgorithm implements SortingAlgorithm {
 
     @Override
     public void sortAndCapture() {
+        
+        captureState();
         quickSort(0, array.length - 1);
     }
 
     private void quickSort(int low, int high) {
         if (low < high) {
             int pivotIndex = partition(low, high);
+            captureState(); 
             quickSort(low, pivotIndex - 1);
             quickSort(pivotIndex + 1, high);
         }
@@ -46,9 +49,13 @@ public class QuickSortAlgorithm implements SortingAlgorithm {
             array[j] = temp;
 
             swapCount++;
-            frames.add(array.clone());
-            swapCounts.add(swapCount);
+            captureState(); 
         }
+    }
+
+    private void captureState() {
+        frames.add(array.clone());
+        swapCounts.add(swapCount);
     }
 
     @Override

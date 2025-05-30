@@ -13,6 +13,11 @@ public class SelectionSortAlgorithm implements SortingAlgorithm {
     @Override
     public void sortAndCapture() {
         int swapCount = 0;
+
+        // Captura o estado inicial
+        frames.add(array.clone());
+        swapCounts.add(swapCount);
+
         for (int i = 0; i < array.length; i++) {
             int i_menor = i;
             for (int j = i + 1; j < array.length; j++) {
@@ -25,10 +30,11 @@ public class SelectionSortAlgorithm implements SortingAlgorithm {
                 array[i] = array[i_menor];
                 array[i_menor] = aux;
                 swapCount++;
-                
-                frames.add(array.clone());
-                swapCounts.add(swapCount);
             }
+
+            
+            frames.add(array.clone());
+            swapCounts.add(swapCount);
         }
     }
 
